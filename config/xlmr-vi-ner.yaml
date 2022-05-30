@@ -33,9 +33,9 @@ model:
 model_name: xlmr-vi-ner
 targets: ner
 ner:
-  Corpus: BioNer
-  BioNer: 
-    data_folder: datasets/bio_ner
+  Corpus: ColumnCorpus-1
+  ColumnCorpus-1: 
+    data_folder: datasets/conll_03_new
     column_format:
       0: text
       1: ner
