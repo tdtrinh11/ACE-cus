@@ -1,8 +1,4 @@
-ModelFinetuner:
-  assign_doc_id: true
-  distill_mode: false
-  sentence_level_batch: true
-  train_with_doc: true
+
 anneal_factor: 2
 ast:
   Corpus: SEMEVAL16-TR:SEMEVAL16-ES:SEMEVAL16-NL:SEMEVAL16-EN:SEMEVAL16-RU
@@ -10,27 +6,10 @@ atis:
   Corpus: ATIS-EN:ATIS-TR:ATIS-HI
 chunk:
   Corpus: CONLL_03:CONLL_03_GERMAN
-embeddings:
-  TransformerWordEmbeddings-0:
-    fine_tune: true
-    layers: '-1'
-    model: xlm-roberta-large
-    pooling_operation: first
-    v2_doc: true
+
 interpolation: 0.5
 is_teacher_list: true
-model:
-  FastSequenceTagger:
-    crf_attention: false
-    dropout: 0.0
-    hidden_size: 256
-    locked_dropout: 0.0
-    sentence_loss: true
-    use_cnn: false
-    use_crf: false
-    use_rnn: false
-    word_dropout: 0.1
-model_name: xlmr-vi-ner
+
 targets: ner
 ner:
   Corpus: ColumnCorpus-1
@@ -42,7 +21,36 @@ ner:
     tag_to_bioes: ner
   tag_dictionary: resources/taggers/bio-ner.pkl
 target_dir: resources/taggers/
+model_name: xlmr-vi-ner
 teacher_annealing: false
+model:
+  FastSequenceTagger:
+    crf_attention: false
+    dropout: 0.0
+    hidden_size: 256
+    locked_dropout: 0.0
+    sentence_loss: true
+    use_cnn: false
+    use_crf: false
+    use_rnn: false
+    word_dropout: 0.1
+
+embeddings:
+  TransformerWordEmbeddings-0:
+    fine_tune: true
+    layers: '-1'
+    model: xlm-roberta-large
+    pooling_operation: first
+    v2_doc: true
+
+trainer: ModelFinetuner
+
+ModelFinetuner:
+  assign_doc_id: true
+  distill_mode: false
+  sentence_level_batch: true
+  train_with_doc: true
+
 train:
   embeddings_storage_mode: none
   fine_tune_mode: true
@@ -57,4 +65,3 @@ train:
   train_with_dev: false
   true_reshuffle: false
   use_warmup: false
-trainer: ModelFinetuner
